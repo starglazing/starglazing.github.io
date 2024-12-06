@@ -23,13 +23,23 @@
     </div>
 
     <script>
-        window.addEventListener('load', function() {
+        // Tunggu semua resource terunduh
+        Promise.all([
+            document.fonts.ready,
+            new Promise(resolve => {
+                if (document.readyState === 'complete') {
+                    resolve();
+                } else {
+                    window.addEventListener('load', resolve);
+                }
+            })
+        ]).then(() => {
             const preloader = document.getElementById('preloader');
             const texts = document.querySelectorAll('.preloader-text');
             const starLoading = document.querySelector('.star-loading');
             const mainContent = document.querySelector('.main-content');
 
-            // Set text pertama menjadi visible
+            // Mulai sequence animasi
             texts[0].style.opacity = '1';
 
             // Sequence animasi
