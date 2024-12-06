@@ -34,7 +34,7 @@
 .star-loading {
     position: absolute;
     font-family: 'Chomsky', serif;
-    font-size: 50vh;
+    font-size: min(50vh, 50vw);
     display: none;
     color: white;
     transition: color 0.5s ease;
@@ -68,4 +68,18 @@
     display: none;
     width: 100%;
     min-height: 100vh;
+}
+
+@media screen and (max-width: 768px) {
+    .star-loading {
+        font-size: min(30vh, 30vw);
+    }
+    
+    #S, #A {
+        transform: translateY(-30px);
+    }
+    
+    #T, #R {
+        transform: translateY(10px);
+    }
 }
