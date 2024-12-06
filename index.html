@@ -6,19 +6,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        #preloader {
-            background: black;
+        .initial-loader {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 9999;
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+
+        .star-spinner {
+            font-size: 50px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
 
 <body>
+    <div class="initial-loader">
+        <div class="star-spinner">★</div>
+    </div>
     <div id="preloader">
         <div class="preloader-text">What brings you here?</div>
         <div class="preloader-text">You have to glaze this</div>
@@ -35,7 +56,6 @@
     </div>
 
     <script>
-        // Tunggu semua resource terunduh
         Promise.all([
             document.fonts.ready,
             new Promise(resolve => {
@@ -46,6 +66,10 @@
                 }
             })
         ]).then(() => {
+            // Hilangkan initial loader
+            const initialLoader = document.querySelector('.initial-loader');
+            initialLoader.style.display = 'none';
+
             const preloader = document.getElementById('preloader');
             const texts = document.querySelectorAll('.preloader-text');
             const starLoading = document.querySelector('.star-loading');
