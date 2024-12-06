@@ -24,7 +24,45 @@
     </div>
 
     <script>
-        // ... script tetap sama seperti sebelumnya ...
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            const texts = document.querySelectorAll('.preloader-text');
+            const starLoading = document.querySelector('.star-loading');
+            const mainContent = document.querySelector('.main-content');
+
+            // Set text pertama menjadi visible
+            texts[0].style.opacity = '1';
+
+            // Sequence animasi
+            setTimeout(() => {
+                texts[0].style.opacity = '0';
+                
+                setTimeout(() => {
+                    texts[1].style.opacity = '1';
+                    
+                    setTimeout(() => {
+                        texts[1].style.opacity = '0';
+                        
+                        setTimeout(() => {
+                            texts.forEach(text => text.style.display = 'none');
+                            starLoading.style.display = 'block';
+                            
+                            setTimeout(() => {
+                                document.querySelector('#T').style.transform = 'translateY(-20px)';
+                                document.querySelector('#R').style.transform = 'translateY(-20px)';
+                                preloader.style.background = 'white';
+                                starLoading.style.color = 'black';
+                                
+                                setTimeout(() => {
+                                    preloader.style.display = 'none';
+                                    mainContent.style.display = 'block';
+                                }, 1000);
+                            }, 2000);
+                        }, 500);
+                    }, 2000);
+                }, 500);
+            }, 2000);
+        });
     </script>
 </body>
 </html>
