@@ -68,18 +68,22 @@
     display: none;
     width: 100%;
     min-height: 100vh;
+    background: black;
+    color: white;
 }
 
 @media screen and (max-width: 768px) {
     .star-loading {
         font-size: min(30vh, 30vw);
     }
-    
-    #S, #A {
+
+    #S,
+    #A {
         transform: translateY(-30px);
     }
-    
-    #T, #R {
+
+    #T,
+    #R {
         transform: translateY(10px);
     }
 }
